@@ -1,40 +1,22 @@
+/* Style général de la page */
 .flashcards-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Occuper toute la hauteur de la fenêtre */
+    padding: 20px;
     text-align: center;
-  }
-  
-  .back-button {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .back-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .card-stack {
     position: relative;
-    width: 300px;
-    height: 400px;
-    perspective: 1000px;
+    height: calc(100vh - 40px);
+  }
+  
+  /* Pile de cartes */
+  .card-stack {
     display: flex;
-    align-items: center;
-    justify-content: center; /* Centrer les cartes horizontalement */
+    justify-content: center;
+    margin-top: 20px;
   }
   
   .card-container {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 200px;
     transition: transform 0.6s ease, opacity 0.6s ease;
     transform-style: preserve-3d;
     opacity: 0;
@@ -51,7 +33,7 @@
     height: 100%;
     transform-style: preserve-3d;
     position: relative;
-    transition: transform 0.6s; /* Animation de retournement */
+    transition: transform 0.6s;
   }
   
   .card-front, .card-back {
@@ -76,21 +58,22 @@
   .card-back {
     background-color: white;
     color: #333;
-    transform: rotateY(180deg); /* Carte inversée au dos */
+    transform: rotateY(180deg);
     border: 1px solid #ddd;
   }
   
   .card.flipped {
-    transform: rotateY(180deg); /* Animation de retournement */
+    transform: rotateY(180deg);
   }
   
+  /* Navigation des cartes */
   .navigation-buttons {
     margin-top: 20px;
-    display: flex;
-    justify-content: center; /* Centrer les boutons */
+    position: absolute;
+    bottom: 150px;
   }
   
-  .navigation-buttons button {
+  button {
     padding: 10px 20px;
     margin: 0 10px;
     background-color: #007bff;
@@ -100,7 +83,112 @@
     cursor: pointer;
   }
   
-  .navigation-buttons button:hover {
-    background-color: #0056b3;
+  /* Modale pour l'ajout de flashcard */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+  
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .modal-content button {
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
+  
+
+  .modal-content .submit-button {
+    background-color: #28a745;
+  }
+  
+  .modal-content .submit-button:hover {
+    background-color: #218838;
+  }
+  
+  .modal-content .cancel-button {
+    background-color: #e74c3c;
+  }
+  
+  .modal-content .cancel-button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Bouton flottant pour ajouter une flashcard */
+  .add-flashcard-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .add-flashcard-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Affichage de la modale */
+  .show-modal {
+    display: block;
+  }
+  
+  .show-backdrop {
+    display: block;
+  }
+
+  /* Petite croix pour supprimer une flashcard */
+.delete-flashcard {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #e74c3c;
+    background-color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+  }
+  
+  .delete-flashcard:hover {
+    background-color: #c0392b;
+    color: white;
+  }
+  
   

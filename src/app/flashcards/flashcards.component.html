@@ -9,6 +9,10 @@
       <div *ngFor="let flashcard of flashcards; let i = index" 
            class="card-container" 
            [class.active]="i === currentIndex">
+        
+        <!-- Petite croix pour supprimer la flashcard -->
+        <span class="delete-flashcard" (click)="deleteFlashcard(flashcard.id)">✕</span>
+        
         <div class="card" [class.flipped]="flashcard.flipped" (click)="flashcard.flipped = !flashcard.flipped">
           <div class="card-front">
             <p>{{ flashcard.question }}</p>
@@ -25,5 +29,22 @@
       <button (click)="prevCard()" [disabled]="currentIndex === 0">Précédent</button>
       <button (click)="nextCard()" [disabled]="currentIndex === flashcards.length - 1">Suivant</button>
     </div>
+  
+    <!-- Modale pour ajouter une flashcard -->
+    <div class="modal-backdrop" *ngIf="showModal"></div>
+    <div class="modal show-modal" *ngIf="showModal">
+      <div class="modal-content">
+        <h3>Ajouter une Flashcard</h3>
+        <form [formGroup]="flashcardForm" (ngSubmit)="submitFlashcard()">
+          <input formControlName="question" type="text" placeholder="Question" required />
+          <input formControlName="answer" type="text" placeholder="Réponse" required />
+          <button type="submit" class="submit-button">Ajouter</button>
+          <button type="button" class="cancel-button" (click)="closeModal()">Annuler</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Bouton flottant pour ouvrir la modale d'ajout -->
+    <button class="add-flashcard-button" (click)="openModal()">+</button>
   </div>
   

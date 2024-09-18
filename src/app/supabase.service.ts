@@ -118,4 +118,17 @@ export class SupabaseService {
       throw error;
     }
   }
+
+  // Méthode pour supprimer une flashcard
+async deleteFlashcard(flashcardId: string): Promise<void> {
+    const { error } = await this.supabase
+      .from('flashcards')
+      .delete()
+      .eq('id', flashcardId);
+  
+    if (error) {
+      throw error;
+    }
+  }
+  
 }
