@@ -1,0 +1,29 @@
+<div class="flashcards-container">
+    <h2>Flashcards du Deck</h2>
+  
+    <!-- Bouton pour retourner à la liste des decks -->
+    <button (click)="goBack()" class="back-button">Retour à la liste des decks</button>
+  
+    <!-- Affichage des flashcards sous forme de pile -->
+    <div class="card-stack">
+      <div *ngFor="let flashcard of flashcards; let i = index" 
+           class="card-container" 
+           [class.active]="i === currentIndex">
+        <div class="card" [class.flipped]="flashcard.flipped" (click)="flashcard.flipped = !flashcard.flipped">
+          <div class="card-front">
+            <p>{{ flashcard.question }}</p>
+          </div>
+          <div class="card-back">
+            <p>{{ flashcard.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Boutons de navigation -->
+    <div class="navigation-buttons">
+      <button (click)="prevCard()" [disabled]="currentIndex === 0">Précédent</button>
+      <button (click)="nextCard()" [disabled]="currentIndex === flashcards.length - 1">Suivant</button>
+    </div>
+  </div>
+  

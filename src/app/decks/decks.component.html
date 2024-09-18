@@ -1,0 +1,16 @@
+<div class="decks-container">
+    <h2>Liste des Decks</h2>
+  
+    <!-- Afficher les decks -->
+    <div *ngIf="decks.length > 0; else noDecksMessage" class="decks-list">
+      <div *ngFor="let deck of decks" class="deck-card" (click)="viewFlashcards(deck.id)">
+        <h3>{{ deck.title }}</h3>
+      </div>
+    </div>
+  
+    <!-- Message si aucun deck n'est disponible -->
+    <ng-template #noDecksMessage>
+      <p>Aucun deck disponible. Créez un nouveau deck pour commencer.</p>
+    </ng-template>
+  </div>
+  

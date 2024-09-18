@@ -1,0 +1,15 @@
+<div class="session-container">
+    <h2>Session d'étude : {{ deck.title }}</h2>
+  
+    <div *ngIf="currentCard">
+      <p><strong>Question :</strong> {{ currentCard.question }}</p>
+      
+      <button *ngIf="!showAnswer" (click)="revealAnswer()">Montrer la réponse</button>
+      <p *ngIf="showAnswer"><strong>Réponse :</strong> {{ currentCard.answer }}</p>
+      
+      <button *ngIf="showAnswer" (click)="nextCard()">Carte suivante</button>
+    </div>
+  
+    <p *ngIf="!currentCard">Session terminée !</p>
+  </div>
+  

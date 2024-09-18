@@ -1,0 +1,22 @@
+<div class="create-deck-container">
+    <h2>Créer un nouveau deck</h2>
+  
+    <form [formGroup]="deckForm" (ngSubmit)="submitDeck()">
+      <label for="title">Titre du deck :</label>
+      <input id="title" formControlName="title" type="text" required>
+  
+      <div formArrayName="cards">
+        <div *ngFor="let card of cards.controls; let i = index" [formGroupName]="i">
+          <h3>Carte {{ i + 1 }}</h3>
+          <label for="question-{{i}}">Question :</label>
+          <input id="question-{{i}}" formControlName="question" type="text" required>
+  
+          <label for="answer-{{i}}">Réponse :</label>
+          <input id="answer-{{i}}" formControlName="answer" type="text" required>
+        </div>
+      </div>
+  
+      <button type="button" (click)="addCard()">Ajouter une carte</button>
+      <button type="submit">Créer le deck</button>
+   
+  
