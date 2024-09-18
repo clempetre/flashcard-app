@@ -3,8 +3,15 @@
   
     <!-- Afficher les decks -->
     <div *ngIf="decks.length > 0; else noDecksMessage" class="decks-list">
-      <div *ngFor="let deck of decks" class="deck-card" (click)="viewFlashcards(deck.id)">
+      <div *ngFor="let deck of decks" class="deck-card">
         <h3>{{ deck.title }}</h3>
+        <p>Nombre de flashcards : {{ deck.flashcardCount }}</p>
+        
+        <!-- Bouton pour afficher les flashcards -->
+        <button (click)="viewFlashcards(deck.id)">Voir les flashcards</button>
+  
+        <!-- Bouton pour supprimer le deck -->
+        <button (click)="deleteDeck(deck.id)" class="delete-button">Supprimer</button>
       </div>
     </div>
   
@@ -12,5 +19,24 @@
     <ng-template #noDecksMessage>
       <p>Aucun deck disponible. Créez un nouveau deck pour commencer.</p>
     </ng-template>
+  
+    <!-- Bouton flottant pour ajouter un deck -->
+    <button class="add-deck-button" (click)="openModal()">+</button>
+  
+    <!-- Modale pour ajouter un deck -->
+    <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2>Créer un nouveau deck</h2>
+        <form (ngSubmit)="createDeck()">
+          <label for="deckTitle">Titre du deck :</label>
+          <input id="deckTitle" [(ngModel)]="newDeckTitle" name="deckTitle" required>
+  
+          <div class="modal-actions">
+            <button type="submit">Créer</button>
+            <button type="button" (click)="closeModal()">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
   

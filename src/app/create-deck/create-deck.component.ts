@@ -34,6 +34,11 @@ export class CreateDeckComponent {
     this.cards.push(cardForm);
   }
 
+  // Calculer le nombre de flashcards
+  get numberOfFlashcards() {
+    return this.cards.length;
+  }
+
   // Soumettre le formulaire et créer le deck avec les flashcards
   async submitDeck() {
     const deckData = this.deckForm.value;
@@ -54,7 +59,7 @@ export class CreateDeckComponent {
         // Attendre la création de toutes les flashcards
         await Promise.all(flashcardPromises);
 
-        alert('Deck et flashcards créés avec succès !');
+        alert(`Deck créé avec succès ! Le deck contient ${this.numberOfFlashcards} flashcards.`);
         this.deckForm.reset();  // Réinitialiser le formulaire après la création
       } else {
         throw new Error('La création du deck a échoué');
