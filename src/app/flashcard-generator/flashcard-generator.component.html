@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Generate Flashcards with IA</h1>
+  <div class="input-container">
+    <label for="theme">Theme:</label>
+    <input type="text" id="theme" [placeholder]="Enter a theme (.e., Hidstory, Math)" [ngModel]="theme" />
+  </div>
+  <button class="generate-button" (click)="generateFlashcards()">Generate</button>
+
+  <div class="flashcards-container">
+    <div  class="flashcard" @ng-Repeat="let card of flashcards">
+      <h3>{{ card.question }}</h3>
+      <p>{{ card.answer }}</p>
+    </div>
+  </div>
+</div>
